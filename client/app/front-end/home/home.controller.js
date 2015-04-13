@@ -10,7 +10,7 @@
 //   }
 // ]);
 
-angular.module('tagg').controller('HomeCtrl', ['$scope', 'HomeService', function ($scope, HomeService, $http) {
+angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', function ($scope, HomeService, $http) {
     
     $scope.taggs = HomeService.getTaggs();
 

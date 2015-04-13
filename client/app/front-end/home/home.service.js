@@ -8,7 +8,7 @@
 //   }
 // ]);
 
-angular.module('tagg')
+angular.module('taggApp')
   .service('HomeService', function($resource) {
 
   	var taggs = [];

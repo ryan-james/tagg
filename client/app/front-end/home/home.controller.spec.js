@@ -2,26 +2,25 @@
 
 describe('home controller tests', function() {
 
-	beforeEach(module('tagg'));
-	beforeEach(module('home.controller'));
+	beforeEach(module('taggApp'));
 
 	var scope, controller, homeServiceMock;
 
 	beforeEach(inject(function($rootScope, $controller, HomeService) {
-		scope = $rootScope.new();
+		scope = $rootScope.$new();
 
 		homeServiceMock = function() {
 			return {
-				getTaggs = function() {
+				getTaggs : function() {
 					return taggs;
 				},
-				saveTagg = function() {
+				saveTagg : function() {
 					return tagg;
 				}
 			};
 		};
 
-		controller = $controller(function($scope:scope, HomeService:homeServiceMock) {
+		controller = $controller('HomeCtrl', {$scope:scope, HomeService:homeServiceMock
 
 		});
 
