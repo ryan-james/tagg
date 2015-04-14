@@ -4,7 +4,7 @@ angular.module('taggApp')
 	.directive('taggHome', function() {
 	return {
 		restrict: 'E',
-		templateUrl: 'home.html',
+		templateUrl: 'app/front-end/home/home.html',
 		controller: 'HomeCtrl'
 	};
 });

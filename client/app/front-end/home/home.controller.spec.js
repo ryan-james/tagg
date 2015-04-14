@@ -9,20 +9,14 @@ describe('home controller tests', function() {
 	beforeEach(inject(function($rootScope, $controller, HomeService) {
 		scope = $rootScope.$new();
 
-		homeServiceMock = function() {
-			return {
-				getTaggs : function() {
-					return taggs;
-				},
-				saveTagg : function() {
-					return tagg;
-				}
-			};
-		};
+		homeServiceMock = HomeService;
 
-		controller = $controller('HomeCtrl', {$scope:scope, HomeService:homeServiceMock
+		spyOn(homeServiceMock, 'getTaggs').and.returnValue(SOMETAGG);
+		spyOn(homeServiceMock, 'saveTagg').and.returnValue(SOMETAGG);
+		
 
-		});
+		controller = $controller('HomeCtrl', 
+			{$scope:scope, HomeService:homeServiceMock});
 
 	}));
 

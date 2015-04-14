@@ -1,49 +1,53 @@
-<form class="form-inline">
+<div class="container">
 
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" placeholder="Title" ng-model="title">
-  </div>
-  <div class="form-group">
-    <label for="link">Link</label>
-    <input type="text" class="form-control" id="link" placeholder="URL" ng-model="url">
-  </div>
-  <div class="form-group">
-    <label for="title">Tag</label>
-    <input type="text" class="form-control" id="tag" placeholder="Tag" ng-model="tag">
-  </div>
-  
-  <button type="submit" class="btn btn-default" ng-click="saveTagg()">Save Link</button>
+    <form class="form-inline tagg-form">
 
-</form>
+      <div class="form-group title-input">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Title" ng-model="title">
+      </div>
+      <div class="form-group link-input">
+        <label for="link">Link</label>
+        <input type="text" class="form-control" id="link" placeholder="URL" ng-model="url">
+      </div>
+      <div class="form-group tag-input">
+        <label for="title">Tag</label>
+        <input type="text" class="form-control" id="tag" placeholder="Tag" ng-model="tag">
+      </div>
+      
+      <button type="submit" class="btn btn-default tagg-save" ng-click="saveTagg()">Save Link</button>
 
-<div class="row dropdown" style="margin-top: 30px">
-    <div class="col-md-3">
-       <select class="form-control" ng-init="tagFilterValue = tags[0]" ng-model="tagFilterValue">
-         <option ng-repeat="tagz in tags">{{tagz.text}}</option>
-       </select>
+    </form>
+
+    <div class="row dropdown" style="margin-top: 30px">
+        <div class="col-md-3">
+           <select class="form-control" ng-init="tagFilterValue = tags[0]" ng-model="tagFilterValue">
+             <option ng-repeat="tagz in tags">{{tagz.text}}</option>
+           </select>
+        </div>
+        <div class="col-md-2">
+           <button class="btn btn-success" type="button" id="tagFilter" ng-click="filterTaggs(tagFilterValue)">Filter</button>
+        </div>
     </div>
-    <div class="col-md-2">
-       <button class="btn btn-success" type="button" id="tagFilter" ng-click="filterTaggs(tagFilterValue)">Filter</button>
+
+    <!-- <tags-input ng-model="tags">
+            <auto-complete source="loadTags($query)"></auto-complete>
+        </tags-input> -->
+
+
+    <h2>Link List:</h2>
+
+    <div class="row" ng-repeat="tagg in taggs | filter : filterTag : true">
+      <div class="col-md-1"><button class="btn btn-danger btn-xs" data-title="Delete" ng-click="removeTagg(item)"><span class="glyphicon glyphicon-trash"></span></button></div>
+      <div class="col-md-1"><h4>TITLE: </h4></div>
+      <div class="col-md-1"><h4 class="link-style">{{tagg.title}}</h4></div>  
+      <div class="col-md-1"><h4>URL: </h4></div>
+      <div class="col-md-2"><h4 class="link-style"><a ng-href="http://{{link.url}}">{{tagg.url}}</a></h4></div>
+      <div class="col-md-1"><h4>TAG: </h4></div>
+      <div class="col-md-2"><h4 class="link-style">{{tagg.tag}}</h4></div>
+      <div class="col-md-1"><h4>CREATED: </h4></div>
+      <div class="col-md-2"><h4 class="link-style">{{tagg.date}}</h4></div>
+      
     </div>
-</div>
 
-<!-- <tags-input ng-model="tags">
-        <auto-complete source="loadTags($query)"></auto-complete>
-    </tags-input> -->
-
-
-<h2>Link List:</h2>
-
-<div class="row" ng-repeat="tagg in taggs | filter : filterTag : true">
-  <div class="col-md-1"><button class="btn btn-danger btn-xs" data-title="Delete" ng-click="removeTagg(item)"><span class="glyphicon glyphicon-trash"></span></button></div>
-  <div class="col-md-1"><h4>TITLE: </h4></div>
-  <div class="col-md-1"><h4 class="link-style">{{tagg.title}}</h4></div>  
-  <div class="col-md-1"><h4>URL: </h4></div>
-  <div class="col-md-2"><h4 class="link-style"><a ng-href="http://{{link.url}}">{{tagg.url}}</a></h4></div>
-  <div class="col-md-1"><h4>TAG: </h4></div>
-  <div class="col-md-2"><h4 class="link-style">{{tagg.tag}}</h4></div>
-  <div class="col-md-1"><h4>CREATED: </h4></div>
-  <div class="col-md-2"><h4 class="link-style">{{tagg.date}}</h4></div>
-  
 </div>

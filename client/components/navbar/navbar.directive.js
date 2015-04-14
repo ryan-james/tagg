@@ -4,7 +4,7 @@ angular.module('taggApp')
 	.directive('navbarUi', function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'navbar.html',
-			controller: 'NavCtrl'
+			templateUrl: 'components/navbar/navbar.html',
+			controller: 'NavbarCtrl'
 		};
 });

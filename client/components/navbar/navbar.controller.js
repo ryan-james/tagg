@@ -5,6 +5,10 @@ angular.module('taggApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    },
+    {
+      'title': 'Away',
+      'link': '/away'
     }];
 
     $scope.isCollapsed = true;

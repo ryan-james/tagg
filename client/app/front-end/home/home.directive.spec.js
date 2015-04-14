@@ -14,8 +14,8 @@ describe('home directive tests', function() {
 		scope.$digest();
 	}));
 
-	it('should do shit', function() {
-
+	it('should contain all required tagg inputs and a save button', function() {
+		var titleInput = element.find('.title-input');
 	});
 
 });

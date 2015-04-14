@@ -6,6 +6,9 @@ angular.module('taggApp')
       .state('home', {
         url: '/',
         template: '<tagg-home></tagg-home>'
-        //controller: 'UiCtrl'
+      })
+      .state('away', {
+        url: '/away',
+        template: '<tagg-away></tagg-away>'
       });
   });

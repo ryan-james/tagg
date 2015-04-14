@@ -4,6 +4,6 @@ angular.module('taggApp')
 	.directive('taggUi', function() {
 		return {
 			restricted: 'E',
-			templateUrl: 'app/front-end/ui/ui.html'			
+			templateUrl: 'app/front-end/ui/ui.html',		
 		};
 	});
