@@ -6,7 +6,7 @@ describe('home service tests', function() {
 
 	var testHomeService;
 
-	beforeEach(inject(function('HomeService') {
+	beforeEach(inject(function(HomeService) {
 		testHomeService = HomeService;
 	}));
 

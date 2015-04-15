@@ -15,13 +15,13 @@
         <input type="text" class="form-control" id="tag" placeholder="Tag" ng-model="tag">
       </div>
       
-      <button type="submit" class="btn btn-default tagg-save" ng-click="saveTagg()">Save Link</button>
+      <button type="submit" class="btn btn-default tagg-save" ng-click="saveTagg()">Save Tagg</button>
 
     </form>
 
     <div class="row dropdown" style="margin-top: 30px">
         <div class="col-md-3">
-           <select class="form-control" ng-init="tagFilterValue = tags[0]" ng-model="tagFilterValue">
+           <select class="form-control tags-dropdown" ng-init="tagFilterValue = tags[0]" ng-model="tagFilterValue">
              <option ng-repeat="tagz in tags">{{tagz.text}}</option>
            </select>
         </div>

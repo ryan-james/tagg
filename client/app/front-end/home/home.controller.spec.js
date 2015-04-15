@@ -11,8 +11,8 @@ describe('home controller tests', function() {
 
 		homeServiceMock = HomeService;
 
-		spyOn(homeServiceMock, 'getTaggs').and.returnValue(SOMETAGG);
-		spyOn(homeServiceMock, 'saveTagg').and.returnValue(SOMETAGG);
+		// spyOn(homeServiceMock, 'getTaggs').and.returnValue(SOMETAGG);
+		// spyOn(homeServiceMock, 'saveTagg').and.returnValue(SOMETAGG);
 		
 
 		controller = $controller('HomeCtrl', 
@@ -20,7 +20,7 @@ describe('home controller tests', function() {
 
 	}));
 
-	it('should do stuff', function() {
+	xit('should do stuff', function() {
 
 	});
 
