@@ -29,7 +29,7 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
       HomeService.saveTagg(tagg);
 
       var tag = $scope.tag;   
-      HomeService.saveTags({text: $scope.tag}); 
+      HomeService.saveTags({tag: $scope.tag}); 
 
     };
 

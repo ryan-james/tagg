@@ -14,7 +14,7 @@ angular.module('taggApp')
   	var taggs = [];
 
     var tagOptions = [
-	{text: 'ALL'}
+	{tag: 'ALL'}
 	];
 
 
