@@ -33,7 +33,7 @@ angular.module('taggApp')
 		getTags : function() {
 			return tagOptions;
 		},
-		saveTags : function(tag) {
+		saveTag : function(tag) {
 			if(tagOptions.indexOf(tag) === -1) {
 				return tagOptions.push(tag);
 			}

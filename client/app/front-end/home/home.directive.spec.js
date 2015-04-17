@@ -8,17 +8,18 @@ describe('home directive tests', function() {
 	var scope, element;
 
 	beforeEach(inject(function($rootScope, $compile) {
-		scope = $rootScope.$new();
+		scope = $rootScope.$new();		
 
-		scope.tags = [{text: 'tag1'},
+		element = '<tagg-home></tagg-home>';
+		element = $compile(element)(scope);
+				scope.tags = [{text: 'tag1'},
 					  {text: 'tag2'},
 					  {text: 'tag3'},
 					  {text: 'tag4'}
 					 ];
 
-		element = '<tagg-home></tagg-home>';
-		element = $compile(element)(scope);
-		scope.$digest();
+					 scope.$digest();
+
 	}));
 
 
@@ -50,8 +51,8 @@ describe('home directive tests', function() {
 		expect(saveLinkBtn.text()).toEqual('Save Tagg');		
 	});
 
-	xit('should display filter tags in a dropdown', function() {
-		var dropdown = element.find('.tags-dropdown option');;
+	it('should display filter tags in a dropdown', function() {
+		var dropdown = element.find('.tags-dropdown option');
 		expect(dropdown.eq(2).text()).toBe('tag1');
 	});
 

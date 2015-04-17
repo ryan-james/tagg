@@ -33,7 +33,7 @@ var Tagg = require('./tagg.model');
 exports.create = function(req, res) {
   Tagg.create(req.body, function(err, tagg) {
     if(err) { return handleError(res, err); }
-    return res.json(201, thing);
+    return res.json(201, tagg);
   });
 };
 
