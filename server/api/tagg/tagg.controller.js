@@ -1,35 +1,26 @@
-/**
- * Using Rails-like standard naming convention for endpoints.
- * GET     /things              ->  index
- * POST    /things              ->  create
- * GET     /things/:id          ->  show
- * PUT     /things/:id          ->  update
- * DELETE  /things/:id          ->  destroy
- */
-
 'use strict';
 
 var _ = require('lodash');
 var Tagg = require('./tagg.model');
 
-// Get list of things
-// exports.index = function(req, res) {
-//   Thing.find(function (err, things) {
-//     if(err) { return handleError(res, err); }
-//     return res.json(200, things);
-//   });
-// };
+// Get list of taggs
+exports.index = function(req, res) {
+  Tagg.find(function (err, taggs) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, taggs);
+  });
+};
 
-// // Get a single thing
-// exports.show = function(req, res) {
-//   Thing.findById(req.params.id, function (err, thing) {
-//     if(err) { return handleError(res, err); }
-//     if(!thing) { return res.send(404); }
-//     return res.json(thing);
-//   });
-// };
+// Get a single tagg
+exports.show = function(req, res) {
+  Tagg.findById(req.params.id, function (err, tagg) {
+    if(err) { return handleError(res, err); }
+    if(!tagg) { return res.send(404); }
+    return res.json(tagg);
+  });
+};
 
-// Creates a new thing in the DB.
+// Creates a new tagg in the DB.
 exports.create = function(req, res) {
   Tagg.create(req.body, function(err, tagg) {
     if(err) { return handleError(res, err); }
@@ -37,31 +28,31 @@ exports.create = function(req, res) {
   });
 };
 
-// Updates an existing thing in the DB.
-// exports.update = function(req, res) {
-//   if(req.body._id) { delete req.body._id; }
-//   Thing.findById(req.params.id, function (err, thing) {
-//     if (err) { return handleError(res, err); }
-//     if(!thing) { return res.send(404); }
-//     var updated = _.merge(thing, req.body);
-//     updated.save(function (err) {
-//       if (err) { return handleError(res, err); }
-//       return res.json(200, thing);
-//     });
-//   });
-// };
+// Updates an existing tagg in the DB.
+exports.update = function(req, res) {
+  if(req.body._id) { delete req.body._id; }
+  Tagg.findById(req.params.id, function (err, tagg) {
+    if (err) { return handleError(res, err); }
+    if(!tagg) { return res.send(404); }
+    var updated = _.merge(tagg, req.body);
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, tagg);
+    });
+  });
+};
 
-// // Deletes a thing from the DB.
-// exports.destroy = function(req, res) {
-//   Thing.findById(req.params.id, function (err, thing) {
-//     if(err) { return handleError(res, err); }
-//     if(!thing) { return res.send(404); }
-//     thing.remove(function(err) {
-//       if(err) { return handleError(res, err); }
-//       return res.send(204);
-//     });
-//   });
-// };
+// Deletes a tagg from the DB.
+exports.destroy = function(req, res) {
+  Tagg.findById(req.params.id, function (err, tagg) {
+    if(err) { return handleError(res, err); }
+    if(!tagg) { return res.send(404); }
+    tagg.remove(function(err) {
+      if(err) { return handleError(res, err); }
+      return res.send(204);
+    });
+  });
+};
 
 function handleError(res, err) {
   return res.send(500, err);

@@ -4,19 +4,19 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-12">
             <div class="form-group title-input" style="width:100%">
               <label for="title">Title</label>
               <input type="text" class="form-control" id="title" placeholder="Title" ng-model="title" style="width:90%">
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-12">
             <div class="form-group link-input" style="width:100%">
               <label for="link">Link</label>
               <input type="text" class="form-control" id="link" placeholder="URL" ng-model="url" style="width:90%">
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-12">
             <div class="form-group tag-input" style="width:100%">
               <label for="title">Tag</label>
               <input type="text" class="form-control" id="tag" placeholder="Tag" ng-model="tag" style="width:90%">
@@ -33,6 +33,7 @@
       </div>
 
     </form>
+
 
     <div class="row dropdown" style="margin-top: 30px">
         <div class="col-md-3">
@@ -52,7 +53,7 @@
     <h2>Link List:</h2>
 
     <div class="row" ng-repeat="tagg in taggs | filter : filterTag : true">
-      <div class="col-md-1"><button class="btn btn-danger btn-xs" data-title="Delete" ng-click="removeTagg(item)"><span class="glyphicon glyphicon-trash"></span></button></div>
+      <div class="col-md-1"><button class="btn btn-danger btn-xs" data-title="Delete" ng-click="removeTagg(tagg)"><span class="glyphicon glyphicon-trash"></span></button></div>
       <div class="col-md-1"><h4>TITLE: </h4></div>
       <div class="col-md-1"><h4 class="link-style">{{tagg.title}}</h4></div>  
       <div class="col-md-1"><h4>URL: </h4></div>
@@ -66,7 +67,7 @@
 
 
 
-    <div class="container" style="overflow:true">
+  <!--   <div class="container" style="overflow:true">
       <div class="col-md-4">
         <a class="embedly-card" href="http://getbootstrap.com/css/#grid">CSS</a>
         <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
@@ -87,19 +88,7 @@
         <a class="embedly-card" href="http://getbootstrap.com/css/#grid">CSS</a>
         <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
       </div>
-     <!--  <div class="col-md-4">
-        <a class="embedly-card" href="http://blog.revolunet.com/blog/2013/12/05/unit-testing-angularjs-directive/">revolunet blog</a>
-        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
-      </div>
-      <div class="col-md-4">
-        <a class="embedly-card" href="https://login.oracle.com/mysso/signon.jsp">Single Sign On - Login</a>
-        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
-      </div>
-      <div class="col-md-4">
-        <a class="embedly-card" href="https://thinkster.io/mean-stack-tutorial/">Learn to Build Modern Web Apps with MEAN</a>
-        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
-      </div> -->
-    </div>
+    </div> -->
 
 
     

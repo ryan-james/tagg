@@ -9,7 +9,7 @@
 // ]);
 
 angular.module('taggApp')
-  .service('HomeService', function($resource) {
+  .service('HomeService', function($http, $resource) {
 
   	var taggs = [];
 
@@ -18,16 +18,29 @@ angular.module('taggApp')
 	];
 
 
+
 	return {
 		getTaggs : function() {
-			return taggs;
+			//return taggs;
+			return $http.get('api/taggs/').success(function(data) {});
 		},
 		saveTagg : function(tagg) {
-			return taggs.push(tagg);
+			//return taggs.push(tagg);
+			var tagg = tagg;
+			$http.post('/api/taggs', tagg).success(function(data, status) {
+				console.log('status: ');
+				console.log(status);
+				console.log('data: ');
+				console.log(data);
+				return data;
+			});
 		},
 		deleteTagg : function(tagg) {
-			var index = taggs.indexOf(tagg);
-			taggs.splice(index, 1);
+			// var index = taggs.indexOf(tagg);
+			// taggs.splice(index, 1);
+			// return;
+			var tagg = tagg._id;
+			$http.delete('api/taggs/' + tagg).success(function(data) {});
 			return;
 		},
 		getTags : function() {

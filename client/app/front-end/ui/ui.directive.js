@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('taggApp')
-	.directive('taggUi', function() {
+	.directive('taggUi', function($state) {
 		return {
 			restricted: 'E',
 			templateUrl: 'app/front-end/ui/ui.html',		

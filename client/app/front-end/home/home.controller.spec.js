@@ -19,12 +19,11 @@ describe('home controller tests', function() {
 
 		controller = $controller('HomeCtrl', 
 			{$scope:scope, HomeService:homeServiceMock});
-
 	}));
 
 	it('should assign the saved taggs to the scope', function() {
 		scope.taggs();
-		expect(homeServiceMock.getTaggs()).toHaveBeenCalled();
+		expect(homeServiceMock.getTaggs).toHaveBeenCalled();
 		expect((scope.taggs).length).toBe(1);
 		expect((scope.taggs.title).text()).toBe('TEST TITLE');		
 	});
@@ -38,7 +37,7 @@ describe('home controller tests', function() {
 	it('should save a tagg', function() {
 		var tagg = {title: 'TEST TITLE', url: 'www.test.com', tag: 'test-tag', date: '07/02/87'};
 		scope.saveTagg(tagg);
-		expect(homeServiceMock.saveTagg()).toHaveBeenCalled();	
+		expect(homeServiceMock.saveTagg).toHaveBeenCalled();	
 	});
 
 	it('should save a tag after saving a tagg', function() {
