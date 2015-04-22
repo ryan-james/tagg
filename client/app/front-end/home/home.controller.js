@@ -14,12 +14,23 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
     
     //$scope.taggs = HomeService.getTaggs();
 
-    HomeService.getTaggs().then(function(response) {
-      $scope.taggs = response.data;
-      console.log($scope.taggs);
-    });
+    $scope.getTaggs = function() {
+      HomeService.getTaggs().then(function(response) {
+        $scope.taggs = response.data;
+    })};
+    $scope.getTaggs();
 
-    $scope.tags = HomeService.getTags();
+
+    $scope.initTags = [{tag: 'ALL'}];
+
+    $scope.getTags = function() {
+      HomeService.getTags().then(function(response) {
+        console.log(response.data);
+        $scope.tags = $scope.initTags.concat(response.data);
+        console.log($scope.tags);
+
+    })};
+    $scope.getTags();
 
 
     $scope.saveTagg = function() {
@@ -28,21 +39,25 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
         title: $scope.title,
         url: $scope.url,
         tag: $scope.tag,
-        date: new Date()
+       // date: new Date()
       };
 
       HomeService.saveTagg(tagg).then(function() {
-        HomeService.getTaggs()
+        $scope.getTaggs();
       });
-
-      // var tag = $scope.tag;   
-      // HomeService.saveTag({tag: $scope.tag}); 
+      
+      var tag = $scope.tag;   
+      HomeService.saveTag({tag: $scope.tag}).then(function() {
+        $scope.getTags();
+      }); 
 
     };
 
+
+
     $scope.removeTagg = function(item) {
       HomeService.deleteTagg(item).then(function() {
-        return $scope.taggs;
+        $scope.getTaggs();
       });
       console.log(item);
     };
