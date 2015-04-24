@@ -14,11 +14,7 @@ var TaggSchema = new Schema({
     required: true,
     trim: true
   },
-  tag: {
-  	type: String,
-    required: true,
-    trim: true
-  },
+  tag: { type: Schema.Types.ObjectId, ref: 'Tag' },
   date: {
   	type: Date,
   	default: Date.now

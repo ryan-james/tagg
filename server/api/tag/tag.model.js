@@ -7,7 +7,8 @@ var TagSchema = new Schema({
   tag: {
   	type: String,
   	required: true,
-  	trim: true
+  	trim: true,
+  	index: {unique:true}
   }
 });
 

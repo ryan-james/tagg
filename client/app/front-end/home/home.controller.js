@@ -10,13 +10,14 @@
 //   }
 // ]);
 
-angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', function ($scope, HomeService, $http) {
+angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', function ($scope, HomeService, $http, socket) {
     
     //$scope.taggs = HomeService.getTaggs();
 
     $scope.getTaggs = function() {
       HomeService.getTaggs().then(function(response) {
         $scope.taggs = response.data;
+        console.log($scope.taggs);
     })};
     $scope.getTaggs();
 
@@ -25,9 +26,9 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
 
     $scope.getTags = function() {
       HomeService.getTags().then(function(response) {
-        console.log(response.data);
+        //console.log(response.data);
         $scope.tags = $scope.initTags.concat(response.data);
-        console.log($scope.tags);
+        //console.log($scope.tags);
 
     })};
     $scope.getTags();
@@ -35,21 +36,30 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
 
     $scope.saveTagg = function() {
 
+      //get tagg obj minus tag
       var tagg = {
         title: $scope.title,
-        url: $scope.url,
-        tag: $scope.tag,
-       // date: new Date()
-      };
+        url: $scope.url,        
+      };      
 
-      HomeService.saveTagg(tagg).then(function() {
-        $scope.getTaggs();
-      });
-      
+      //get and save tag property
       var tag = $scope.tag;   
-      HomeService.saveTag({tag: $scope.tag}).then(function() {
-        $scope.getTags();
+      HomeService.saveTag({tag: $scope.tag}).then(function(response) {
+        console.log('response after saving tag');
+        console.log(response.data);
+        tagg.tag = response.data;
+        console.log('tagg: ');
+        console.log(tagg);
+        //save tagg obj
+        HomeService.saveTagg(tagg).then(function() {
+          $scope.getTaggs();
+        })
+        .then(function() {
+          $scope.getTags();
+        });        
       }); 
+
+
 
     };
 

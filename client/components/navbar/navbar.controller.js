@@ -9,6 +9,10 @@ angular.module('taggApp')
     {
       'title': 'Away',
       'link': '/away'
+    },
+    {
+      'title': 'Socket',
+      'link': '/socket'
     }];
 
     $scope.isCollapsed = true;

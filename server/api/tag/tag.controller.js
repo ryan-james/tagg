@@ -22,8 +22,17 @@ exports.show = function(req, res) {
 
 // Creates a new tag in the DB.
 exports.create = function(req, res) {
+  var tagId;
   Tag.create(req.body, function(err, tag) {
-    if(err) { return handleError(res, err); }
+    if(err) { 
+      //return handleError(res, err); 
+
+      Tag.find({'tag': req.body.tag}, function (err, tag) {
+        tagId = tag[0]._id;
+        return res.json(200, tagId);
+      });
+
+    }
     return res.json(201, tag);
   });
 };
@@ -55,5 +64,7 @@ exports.destroy = function(req, res) {
 };
 
 function handleError(res, err) {
+  console.log('there is a dupe');
+  //console.log(res);
   return res.send(500, err);
 }
