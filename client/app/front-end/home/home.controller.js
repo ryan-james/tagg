@@ -17,6 +17,7 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
     $scope.getTaggs = function() {
       HomeService.getTaggs().then(function(response) {
         $scope.taggs = response.data;
+        console.log('gettaggs: ');
         console.log($scope.taggs);
     })};
     $scope.getTaggs();
@@ -28,31 +29,31 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
       HomeService.getTags().then(function(response) {
         //console.log(response.data);
         $scope.tags = $scope.initTags.concat(response.data);
-        //console.log($scope.tags);
+        console.log('gettags: ');
+        console.log($scope.tags);
 
     })};
     $scope.getTags();
 
 
     $scope.saveTagg = function() {
-
+      var titleCap = capitalizeEachWord($scope.title);
+      var tagCap = capitalizeEachWord($scope.tag);
+     
       //get tagg obj minus tag
       var tagg = {
-        title: $scope.title,
+        title: titleCap,
         url: $scope.url,        
       };      
 
       //get and save tag property
-      var tag = $scope.tag;   
-      HomeService.saveTag({tag: $scope.tag}).then(function(response) {
-        console.log('response after saving tag');
-        console.log(response.data);
-        tagg.tag = response.data;
-        console.log('tagg: ');
-        console.log(tagg);
+      HomeService.saveTag({tag: tagCap}).then(function(response) {
+        //set the saved tagId response to tagg.tag
+        tagg.tag = response.data._id;
         //save tagg obj
         HomeService.saveTagg(tagg).then(function() {
           $scope.getTaggs();
+        }, function(err) {
         })
         .then(function() {
           $scope.getTags();
@@ -75,16 +76,16 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
 
 
 
-    // $scope.filterTaggs = function(tagFilterValue) {
-    //   console.log('TFV: ' + JSON.stringify(tagFilterValue));
-    //   $scope.filterTag = tagFilterValue;
-    //   console.log('TFV: ' + $scope.filterTag);
+    $scope.filterTaggs = function(tagFilterValue) {
+      console.log('TFV: ' + JSON.stringify(tagFilterValue));
+      $scope.filterTag = tagFilterValue;
+      console.log('TFV: ' + $scope.filterTag);
 
       
-    //   if($scope.filterTag === 'ALL') {
-    //     $scope.filterTag = null;
-    //   }
-    // };
+      if($scope.filterTag === 'ALL') {
+        $scope.filterTag = undefined;
+      }
+    };
 
 
 
@@ -94,6 +95,10 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
       //   return $http.get('/tags?query=' + query);
       // };
 
-
+      function capitalizeEachWord(str) {
+        return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
 
 }]);

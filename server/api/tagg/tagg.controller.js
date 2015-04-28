@@ -5,7 +5,7 @@ var Tagg = require('./tagg.model');
 
 // Get list of taggs
 exports.index = function(req, res) {
-  Tagg.find(function (err, taggs) {
+  Tagg.find().populate('tag').exec(function (err, taggs) {
     if(err) { return handleError(res, err); }
     return res.json(200, taggs);
   });
