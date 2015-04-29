@@ -68,6 +68,7 @@
       <div class="col-md-6" ng-repeat="tagg in taggs | filter : filterTag : true">
         <h3>{{tagg.title}}</h3>
         <p><strong>Created: {{tagg.date}}</strong></p>
+         <a href="{{tagg.url}}">{{tagg.url}}</a>        
         <p>
          <!-- <a href="{{link.url}}">{{tagg.title}}</a> -->         
          <a class="embedly-card" href="{{tagg.url}}"></a>

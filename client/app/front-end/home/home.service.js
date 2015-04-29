@@ -48,6 +48,8 @@ angular.module('taggApp')
 			// 	return tagOptions.push(tag);
 			// }
 			return $http.post('/api/tags/', tag).success(function(data) {
+				console.log('data: ');
+				console.log(data);
 				return data;
 			});
 		}

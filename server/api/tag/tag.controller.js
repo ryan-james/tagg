@@ -28,8 +28,8 @@ exports.create = function(req, res) {
       //return handleError(res, err); 
 
       Tag.find({'tag': req.body.tag}, function (err, tag) {
-        tagId = tag[0]._id;
-        return res.json(200, tagId);
+        tag = tag[0];
+        return res.json(200, tag);
       });
 
     }
