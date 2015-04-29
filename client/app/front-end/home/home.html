@@ -52,7 +52,7 @@
 
     <h2>Tagg List:</h2>
 
-    <div class="row" ng-repeat="tagg in taggs | filter : filterTag : true">
+    <!-- <div class="row" ng-repeat="tagg in taggs | filter : filterTag : true">
       <div class="col-md-1"><button class="btn btn-danger btn-xs" data-title="Delete" ng-click="removeTagg(tagg)"><span class="glyphicon glyphicon-trash"></span></button></div>
       <div class="col-md-1"><h4>TITLE: </h4></div>
       <div class="col-md-1"><h4 class="link-style">{{tagg.title}}</h4></div>  
@@ -62,9 +62,19 @@
       <div class="col-md-2"><h4 class="link-style">{{tagg.tag[0].tag}}</h4></div>
       <div class="col-md-1"><h4>CREATED: </h4></div>
       <div class="col-md-2"><h4 class="link-style">{{tagg.date}}</h4></div>
-      
-    </div>
+    </div> -->
 
+    <div class="row">
+      <div class="col-md-6" ng-repeat="tagg in taggs | filter : filterTag : true">
+        <h3>{{tagg.title}}</h3>
+        <p><strong>Created: {{tagg.date}}</strong></p>
+        <p>
+         <!-- <a href="{{link.url}}">{{tagg.title}}</a> -->         
+         <a class="embedly-card" href="{{tagg.url}}"></a>
+        </p>
+        <h4>Tag(s): <span style="color:gray">{{tagg.tag[0].tag}}</span></h4>        
+      </div>
+    </div>
 
 
   <!--   <div class="container" style="overflow:true">
@@ -90,7 +100,11 @@
       </div>
     </div> -->
 
-
+<script type="text/javascript" async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8">  
+  $('p a').embedly({
+    // key: '7a682728fe9646b483c6aee1c9edc992',
+    query: {maxwidth:530} });
+</script>
     
 
 </div>
