@@ -69,37 +69,32 @@
         <h3>{{tagg.title}}</h3>
         <p><strong>Created: {{tagg.date}}</strong></p>
          <a href="{{tagg.url}}">{{tagg.url}}</a>        
-        <p>
-         <!-- <a href="{{link.url}}">{{tagg.title}}</a> -->         
+        <p>       
          <a class="embedly-card" href="{{tagg.url}}"></a>
         </p>
         <h4>Tag(s): <span style="color:gray">{{tagg.tag[0].tag}}</span></h4>        
       </div>
     </div>
 
-
-  <!--   <div class="container" style="overflow:true">
-      <div class="col-md-4">
-        <a class="embedly-card" href="http://getbootstrap.com/css/#grid">CSS</a>
-        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
-        <a class="embedly-card" href="http://blog.revolunet.com/blog/2013/12/05/unit-testing-angularjs-directive/">revolunet blog</a>
-        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+    <!-- <div masonry>
+        <div class="masonry-brick" ng-repeat="brick in bricks">
+            <img ng-src="{{ brick.src }}" alt="A masonry brick">
+        </div>
+    <div class="row">
+      <div class="masonry-brick" ng-repeat="tagg in taggs | filter : filterTag : true">
+        <h3>{{tagg.title}}</h3>
+        <p><strong>Created: {{tagg.date}}</strong></p>
+         <a href="{{tagg.url}}">{{tagg.url}}</a>        
+        <p>        
+         <a class="embedly-card" href="{{tagg.url}}"></a>
+        </p>
+        <h4>Tag(s): <span style="color:gray">{{tagg.tag[0].tag}}</span></h4>        
       </div>
-      <div class="col-md-4">
-        <a class="embedly-card" href="http://stackoverflow.com/questions/22157164/how-to-unit-test-a-dropdown-list-in-jasmine-angularjs">How to unit test a dropdown list in Jasmine/Angularjs</a>
-        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
-        <a class="embedly-card" href="https://login.oracle.com/mysso/signon.jsp">Single Sign On - Login</a>
-        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
-      </div>
-      <div class="col-md-4">
-        <a class="embedly-card" href="https://delicious.com/network">Delicious</a>
-        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
-        <a class="embedly-card" href="https://thinkster.io/mean-stack-tutorial/">Learn to Build Modern Web Apps with MEAN</a>
-        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
-        <a class="embedly-card" href="http://getbootstrap.com/css/#grid">CSS</a>
-        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
-      </div>
+    </div>
     </div> -->
+
+
+
 
 <script type="text/javascript" async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8">  
   $('p a').embedly({

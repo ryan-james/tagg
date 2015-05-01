@@ -12,8 +12,6 @@
 
 angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', function ($scope, HomeService, $http, socket) {
     
-    //$scope.taggs = HomeService.getTaggs();
-
     $scope.getTaggs = function() {
       HomeService.getTaggs().then(function(response) {
         $scope.taggs = response.data;
@@ -37,8 +35,8 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
 
 
     $scope.saveTagg = function() {
-      var titleCap = capitalizeEachWord($scope.title);
-      var tagCap = capitalizeEachWord($scope.tag);
+      var titleCap = $scope.capitalizeEachWord($scope.title);
+      var tagCap = $scope.capitalizeEachWord($scope.tag);
      
       //get tagg obj minus tag
       var tagg = {
@@ -59,9 +57,6 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
           $scope.getTags();
         });        
       }); 
-
-
-
     };
 
 
@@ -95,7 +90,8 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
       //   return $http.get('/tags?query=' + query);
       // };
 
-      function capitalizeEachWord(str) {
+      $scope.capitalizeEachWord = function(str) {
+        var str = str;
         return str.replace(/\w\S*/g, function(txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
