@@ -11,6 +11,9 @@
 // ]);
 
 angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', function ($scope, HomeService, $http, socket) {
+
+      $scope.singers = ['../../../assets/images/ron1.jpg', 'assets/images/ron2.jpg','assets/images/ron3.jpg','assets/images/ron4.jpg','assets/images/ron5.jpg','assets/images/ron6.jpg','assets/images/ron7.jpg'];
+
     
     $scope.getTaggs = function() {
       HomeService.getTaggs().then(function(response) {

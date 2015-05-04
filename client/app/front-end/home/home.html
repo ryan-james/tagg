@@ -64,7 +64,7 @@
       <div class="col-md-2"><h4 class="link-style">{{tagg.date}}</h4></div>
     </div> -->
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-6" ng-repeat="tagg in taggs | filter : filterTag : true">
         <h3>{{tagg.title}}</h3>
         <p><strong>Created: {{tagg.date}}</strong></p>
@@ -74,14 +74,13 @@
         </p>
         <h4>Tag(s): <span style="color:gray">{{tagg.tag[0].tag}}</span></h4>        
       </div>
-    </div>
+    </div> -->
 
-    <!-- <div masonry>
-        <div class="masonry-brick" ng-repeat="brick in bricks">
-            <img ng-src="{{ brick.src }}" alt="A masonry brick">
-        </div>
-    <div class="row">
-      <div class="masonry-brick" ng-repeat="tagg in taggs | filter : filterTag : true">
+  <div masonry>
+    <div class="masonry-brick" ng-repeat="singer in singers">
+       <img ng-src="{{ singer }}" alt="a singer">
+    </div>
+    <!-- <div class="masonry-brick" ng-repeat="tagg in taggs | filter : filterTag : true">
         <h3>{{tagg.title}}</h3>
         <p><strong>Created: {{tagg.date}}</strong></p>
          <a href="{{tagg.url}}">{{tagg.url}}</a>        
@@ -89,9 +88,10 @@
          <a class="embedly-card" href="{{tagg.url}}"></a>
         </p>
         <h4>Tag(s): <span style="color:gray">{{tagg.tag[0].tag}}</span></h4>        
-      </div>
-    </div>
     </div> -->
+
+  </div>
+
 
 
 
