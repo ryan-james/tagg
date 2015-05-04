@@ -11,29 +11,21 @@
 angular.module('taggApp')
   .service('HomeService', function($http, $resource) {
 
-  	var taggs = [];
-
-    var tagOptions = [
-	{tag: 'ALL'}
-	];
-
-
-
 	return {
 		getTaggs : function() {
-			return $http.get('api/taggs/').success(function(data) {
+			return $http.get('/api/taggs/').success(function(data) {
 				return data;
 			});
 		},
 		saveTagg : function(tagg) {
 			var tagg = tagg;
-			return $http.post('/api/taggs', tagg).success(function(data, status) {
+			return $http.post('/api/taggs/', tagg).success(function(data, status) {
 				return data;
 			});
 		},
 		deleteTagg : function(tagg) {
 			var tagg = tagg._id;
-			return $http.delete('api/taggs/' + tagg).success(function(data) {
+			return $http.delete('/api/taggs/' + tagg).success(function(data) {
 				return data;
 			});
 		},

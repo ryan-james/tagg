@@ -4,47 +4,46 @@ xdescribe('home service tests', function() {
 
 	beforeEach(module('taggApp'));
 
-	var testHomeService;
+	var testHomeService, httpBackend;
 
-	beforeEach(inject(function(HomeService) {
+	beforeEach(inject(function(HomeService, $httpBackend) {
 		testHomeService = HomeService;
+		httpBackend = $httpBackend;
+
 	}));
 
 	
-
-	it('should have an empty array of taggs', function() {
-		var taggs = testHomeService.getTaggs();
-		expect(taggs.length).toEqual(0);
-	});
-
-	it('should have an array of tags with only ALL as a default entry', function() {
-		var tags = testHomeService.getTags();
-		expect(tags.length).toBe(1);
-		expect(tags[0].tag).toEqual('ALL');
+	it('should be able to get taggs', function() {
+		testHomeService.getTaggs();
+		httpBackend.expectGET('/api/taggs/').respond({title: 'TEST TITLE', url: 'www.test.com', tag: 'test-tag', date: '07/02/87'});
+		httpBackend.flush();		
 	});
 
 	it('should be able to save a tagg', function() {
 		var tagg = {title: 'TEST TITLE', url: 'www.test.com', tag: 'test-tag', date: '07/02/87'};
-		//var taggs = testHomeService.getTaggs();
 		testHomeService.saveTagg(tagg);
-		var taggs = testHomeService.getTaggs();
-		expect(taggs.length).toEqual(1);
+		httpBackend.expectPOST('/api/taggs/').respond({title: 'TEST TITLE', url: 'www.test.com', tag: 'test-tag', date: '07/02/87'});
+		httpBackend.flush();		
 	});
 
 	it('should be able to delete a tagg', function() {
-		var tagg = {title: 'TEST TITLE', url: 'www.test.com', tag: 'test-tag', date: '07/02/87'};
-		testHomeService.saveTagg(tagg);
-		var taggs = testHomeService.getTaggs();
-		expect(taggs.length).toEqual(1);
+		var tagg = {_id: 'test-tag'};	
 		testHomeService.deleteTagg(tagg);
-		expect(taggs.length).toEqual(0);
+		httpBackend.expectDELETE('/api/taggs/' + tagg._id).respond('tagg deleted: ' + tagg);
+		httpBackend.flush();		
+	});
+
+	it('should be able to get tags', function() {
+		testHomeService.getTags();
+		httpBackend.expectGET('/api/tags/').respond({tag: 'test-tag'});
+		httpBackend.flush();		
 	});
 
 	it('should be able to save a tag', function() {
 		var tag = {tag: 'test-tag'};
 		testHomeService.saveTag(tag);		
-		var tags = testHomeService.getTags();
-		expect(tags.length).toBe(2);
+		httpBackend.expectPOST('/api/tags/').respond({tag: 'test-tag'});
+		httpBackend.flush();
 	});
 
 });

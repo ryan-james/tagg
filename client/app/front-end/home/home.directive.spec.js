@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe('home directive tests', function() {
+describe('home directive tests', function() {
 
 	beforeEach(module('taggApp'));
 	beforeEach(module('app/front-end/home/home.html'));
