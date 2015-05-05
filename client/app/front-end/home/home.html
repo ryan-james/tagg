@@ -52,6 +52,9 @@
 
     <h2>Tagg List:</h2>
 
+           <button class="btn btn-success" type="button" id="tagFilter" ng-click="refresh()">reload</button>
+
+
     <!-- <div class="row" ng-repeat="tagg in taggs | filter : filterTag : true">
       <div class="col-md-1"><button class="btn btn-danger btn-xs" data-title="Delete" ng-click="removeTagg(tagg)"><span class="glyphicon glyphicon-trash"></span></button></div>
       <div class="col-md-1"><h4>TITLE: </h4></div>
@@ -77,18 +80,19 @@
     </div> -->
 
   <div masonry>
-    <div class="masonry-brick" ng-repeat="singer in singers">
+    <!-- <div class="masonry-brick" ng-repeat="singer in singers">
        <img ng-src="{{ singer }}" alt="a singer">
-    </div>
-    <!-- <div class="masonry-brick" ng-repeat="tagg in taggs | filter : filterTag : true">
-        <h3>{{tagg.title}}</h3>
+    </div> -->
+    <div class="masonry-brick" ng-repeat="tagg in taggs | filter : filterTag : true">
+      <tagg-brick>
+       <!--  <h3>{{tagg.title}}</h3>
         <p><strong>Created: {{tagg.date}}</strong></p>
          <a href="{{tagg.url}}">{{tagg.url}}</a>        
         <p>        
          <a class="embedly-card" href="{{tagg.url}}"></a>
         </p>
-        <h4>Tag(s): <span style="color:gray">{{tagg.tag[0].tag}}</span></h4>        
-    </div> -->
+        <h4>Tag(s): <span style="color:gray">{{tagg.tag[0].tag}}</span></h4>   -->      
+    </div>
 
   </div>
 

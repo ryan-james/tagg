@@ -10,9 +10,14 @@
 //   }
 // ]);
 
-angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', function ($scope, HomeService, $http, socket) {
+angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', function ($scope, HomeService, $timeout, $http, socket) {
 
-      $scope.singers = ['../../../assets/images/ron1.jpg', 'assets/images/ron2.jpg','assets/images/ron3.jpg','assets/images/ron4.jpg','assets/images/ron5.jpg','assets/images/ron6.jpg','assets/images/ron7.jpg'];
+      $scope.singers = ['../../../assets/images/ron2.jpg', 'assets/images/ron3.jpg','assets/images/ron1.jpg','assets/images/ron4.jpg','assets/images/ron5.jpg','assets/images/ron6.jpg',
+      'assets/images/ron7.jpg','assets/images/ron8.jpg','assets/images/ron9.jpg','assets/images/ron10.jpg'];
+
+      $scope.refresh = function() {
+        $scope.$broadcast('masonry.reload');
+      };
 
     
     $scope.getTaggs = function() {
