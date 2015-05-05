@@ -19,5 +19,5 @@ In life, everyone has a multitude of different interests, but most often, there 
 
 1. Content from people you follow ONLY becomes part of your info network. People who follow you won't see this.
 2. A user's tags can be rated, to allow people to find others based on the quality of their taggd info.
-3. Users can change other people's tags (like wikipedia, for example) to ensure that things are taggd correctly.
+3. Users can change other people's tags (like wikipedia, for example) to ensure that things are taGGd correctly.
 4. Multiple tags can be added to content.
