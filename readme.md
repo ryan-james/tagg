@@ -1,4 +1,4 @@
-##Welcome to the taggdUp! project! 
+##Welcome to the taGG! project! 
 
 When complete, my intention is for this project to be the number one tool for bookmarking (tagging) information, and socially sharing the information among people in your chosen network.
 
@@ -8,7 +8,7 @@ In life, everyone has a multitude of different interests, but most often, there 
 **A brief overview:**
 
 1. A user will find content on a website, blog, media app, etc...
-2. They will save the link on taggdUp! and tag it with a revelant tag(s).
+2. They will save the link on taGG! and tag it with a revelant tag(s).
 3. Another user does the same.
 4. The two users are familiar with each other, and would like to have access to the content that the other has taggd.
 5. The users can follow each other and are able to choose which of the taggd content they wish to see in their content feed.
