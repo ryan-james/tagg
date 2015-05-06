@@ -35,7 +35,7 @@
     </form>
 
 
-    <div class="row dropdown" style="margin-top: 30px">
+    <!-- <div class="row dropdown" style="margin-top: 30px">
         <div class="col-md-3">
            <select class="form-control tags-dropdown" ng-init="tagFilterValue = tags[0]" ng-model="tagFilterValue">
              <option ng-repeat="tagz in tags">{{tagz.tag}}</option>
@@ -44,7 +44,22 @@
         <div class="col-md-2">
            <button class="btn btn-success" type="button" id="tagFilter" ng-click="filterTaggs(tagFilterValue)">Filter</button>
         </div>
-    </div>
+    </div> -->
+
+
+    <div class="row dropdown" style="margin-top: 30px">
+      <div class="col-lg-6 col-lg-offset-3">
+        <div class="input-group">
+          <!-- <input type="text" class="form-control" placeholder="Search for..."> -->
+          <select class="form-control tags-dropdown" ng-init="tagFilterValue = tags[0]" ng-model="tagFilterValue">
+             <option ng-repeat="tagz in tags">{{tagz.tag}}</option>
+           </select>
+          <span class="input-group-btn">
+            <button class="btn btn-success" type="button" id="tagFilter" ng-click="filterTaggs(tagFilterValue)">Filter!</button>
+          </span>
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
 
     <!-- <tags-input ng-model="tags">
             <auto-complete source="loadTags($query)"></auto-complete>
@@ -52,7 +67,7 @@
 
     <h2>Tagg List:</h2>
 
-           <button class="btn btn-success" type="button" id="tagFilter" ng-click="refresh()">reload</button>
+           <button class="btn btn-warning" type="button" id="tagFilter" ng-click="refresh()">reload</button>
 
 
     <!-- <div class="row" ng-repeat="tagg in taggs | filter : filterTag : true">

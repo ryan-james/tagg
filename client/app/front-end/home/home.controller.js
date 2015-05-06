@@ -16,7 +16,7 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
       'assets/images/ron7.jpg','assets/images/ron8.jpg','assets/images/ron9.jpg','assets/images/ron10.jpg'];
 
       $scope.refresh = function() {
-        $scope.$broadcast('masonry.reload');
+        $scope.$broadcast('masonry.reload'); 
       };
 
     
@@ -105,4 +105,6 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
     });
 }
 
+
+  $scope.refresh();
 }]);
