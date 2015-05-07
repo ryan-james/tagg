@@ -7,7 +7,8 @@ angular.module('taggApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'wu.masonry'
+  'wu.masonry',
+  'ngTagsInput'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

@@ -28,11 +28,29 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
  * Home Styles
  */
 
+ .home-logo {
+ 	 text-align:center; 
+ 	 margin-top: 6%; 
+ 	 margin-bottom: 20px;
+ }
+
  .tagg-form {
+
+ 	margin-top: 5%;
+
  	form-group {
  		width:100%
  	} 	
  	input {
  		width: 90%;
  	}
+
+ 	.tagg-label {
+ 		font-size:12px;
+ 	}
+
+ 	.save-tagg-btn {
+ 		margin-top: 5%;
+ 	}
  }
+

@@ -15,16 +15,25 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
       $scope.singers = ['../../../assets/images/ron2.jpg', 'assets/images/ron3.jpg','assets/images/ron1.jpg','assets/images/ron4.jpg','assets/images/ron5.jpg','assets/images/ron6.jpg',
       'assets/images/ron7.jpg','assets/images/ron8.jpg','assets/images/ron9.jpg','assets/images/ron10.jpg'];
 
-      $scope.refresh = function() {
-        $scope.$broadcast('masonry.reload'); 
-      };
+
+       // $scope.tags = [];
+
+               
+
+
+    
+    $scope.refresh = function() {
+      $scope.$broadcast('masonry.reload'); 
+    };
 
     
     $scope.getTaggs = function() {
       HomeService.getTaggs().then(function(response) {
         $scope.taggs = response.data;
-        console.log('gettaggs: ');
-        console.log($scope.taggs);
+        // console.log('gettaggs: ');
+        // console.log($scope.taggs);
+         console.log('called get taggs');
+         console.log($scope.taggs);
     })};
     $scope.getTaggs();
 
@@ -35,11 +44,16 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
       HomeService.getTags().then(function(response) {
         //console.log(response.data);
         $scope.tags = $scope.initTags.concat(response.data);
-        console.log('gettags: ');
-        console.log($scope.tags);
+        // console.log('gettags: ');
+        // console.log($scope.tags);
 
     })};
     $scope.getTags();
+
+     $scope.loadTags = function(query) {
+                     return $http.get('/tags?query=' + query);
+                };
+
 
 
     $scope.saveTagg = function() {
@@ -72,6 +86,8 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
     $scope.removeTagg = function(item) {
       HomeService.deleteTagg(item).then(function() {
         $scope.getTaggs();
+        console.log($scope.taggs);
+      }, function(err) {
       });
       console.log(item);
     };
