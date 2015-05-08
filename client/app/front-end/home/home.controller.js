@@ -12,14 +12,26 @@
 
 angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', function ($scope, HomeService, $timeout, $http, socket) {
 
-      $scope.singers = ['../../../assets/images/ron2.jpg', 'assets/images/ron3.jpg','assets/images/ron1.jpg','assets/images/ron4.jpg','assets/images/ron5.jpg','assets/images/ron6.jpg',
-      'assets/images/ron7.jpg','assets/images/ron8.jpg','assets/images/ron9.jpg','assets/images/ron10.jpg'];
+    
+      $scope.textTags = function() {
+        for(var i=1; i<$scope.tags.length; i++) {
+          $scope.tags[i].text = $scope.tags[i].tag;
+        }
+        return;
+      };
 
+      $scope.tagzz = [];
+       
+      $scope.loadTags = function(query) {
+           // return $http.get('/api/tags?query=' + query);
+           return $scope.tags;
+      };
 
-       // $scope.tags = [];
-
-               
-
+$scope.taggys = function() {
+  // $scope.textTags();
+  console.log($scope.tag);
+  // console.log($scope.tagsss);
+};
 
     
     $scope.refresh = function() {
@@ -38,22 +50,18 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
     $scope.getTaggs();
 
 
-    $scope.initTags = [{tag: 'ALL'}];
+    $scope.initTags = [{text: 'ALL'}];
 
     $scope.getTags = function() {
       HomeService.getTags().then(function(response) {
         //console.log(response.data);
         $scope.tags = $scope.initTags.concat(response.data);
-        // console.log('gettags: ');
-        // console.log($scope.tags);
+        $scope.textTags();
+        console.log('gettags: ');
+        console.log($scope.tags);
 
     })};
     $scope.getTags();
-
-     $scope.loadTags = function(query) {
-                     return $http.get('/tags?query=' + query);
-                };
-
 
 
     $scope.saveTagg = function() {
@@ -115,9 +123,17 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
       // };
 
       $scope.capitalizeEachWord = function(str) {
-        var str = str;
-        return str.replace(/\w\S*/g, function(txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        if (str.length == 1){
+          var str = str;
+          return str.replace(/\w\S*/g, function(txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }
+        
+        for(var i=0; i<str.length; i++) {
+            var str = str[i];
+            return str.replace(/\w\S*/g, function(txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        };
     });
 }
 

@@ -1,38 +1,44 @@
 <div class="container">
 
-<div class="container">
+<!-- <div class="container">
    <div class="row home-logo">
      <img src="../../../assets/images/tagg-logo-main.jpg">
    </div>
-</div>
+</div> -->
 
     <form class="form-inline tagg-form" name="taggForm">
 
       <div class="container">
         <div class="row">
-          <div class="col-md-4 col-sm-12">
+          <div class="col-md-6 col-sm-12">
             <div class="form-group title-input" style="width:100%">
-              <label for="title tagg-label">Title</label>
+              <label for="title tagg-label">Title:</label>
               <input type="text" class="form-control input-lg" id="title" placeholder="Title" ng-model="title" style="width:90%">
             </div>
           </div>
-          <div class="col-md-4 col-sm-12">
+          <div class="col-md-6 col-sm-12">
             <div class="form-group link-input" style="width:100%">
-              <label for="link tagg-label">Link</label>
+              <label for="link tagg-label">Link:</label>
               <input type="text" class="form-control input-lg" id="link" placeholder="URL" ng-model="url" style="width:90%">
             </div>
-          </div>
-          <div class="col-md-4 col-sm-12">
-            <div class="form-group tag-input" style="width:100%">
-              <label for="title tagg-label">Tag</label>
-              <input type="text" class="form-control input-lg" id="tag" placeholder="Tag" ng-model="tag" style="width:90%">
-            </div>
+          </div>          
+        </div>
+        <div class="row" style="margin-top:30px">
+          <div class="col-md-12 col-sm-12">
+            <!-- <div class="form-group tag-input" style="width:100%">
+              <label for="title tagg-label">Tag(s):</label>
+              <input type="text" class="form-control input-lg" id="tag" placeholder="Tag(s)" ng-model="tag" style="width:90%">
+            </div> -->
+
+
+            <tags-input ng-model="tag">
+        <!-- <auto-complete source="loadTags($query)"></auto-complete> -->
+            </tags-input>
           </div>
         </div>
         
         <div class="row" style="margin-top:20px">
           <div class="col-md-6 col-md-offset-3" style="text-align:center">      
-            <!-- <button type="submit" class="btn btn-info btn-lg tagg-save" ng-click="saveTagg()">Save Tagg</button> -->
             <button class="button button-3d button-primary button-jumbo button-rounded save-tagg-btn" ng-click="saveTagg()">Save Tagg<i class="fa fa-flag" style="margin-left:12px"></i></button>
           </div>
         </div>
@@ -41,9 +47,9 @@
 
     </form>
 
-    <tags-input ng-model="tags">
-        <auto-complete source="loadTags($query)"></auto-complete>
-    </tags-input>
+    
+
+    <button ng-click="taggys()">taggys</button>
 
 
     <!-- <div class="row dropdown" style="margin-top: 30px">
