@@ -35,13 +35,18 @@ angular.module('taggApp')
 				return data;
 			});
 		},
+		tagTypeAhead : function(query) {
+			return $http.get('/api/tags/', {tag:query}).success(function(data) {
+				return data;
+			});
+		},
 		saveTag : function(tag) {
 			// if(tagOptions.indexOf(tag) === -1) {
 			// 	return tagOptions.push(tag);
 			// }
 			return $http.post('/api/tags/', tag).success(function(data) {
-				console.log('data: ');
-				console.log(data);
+				// console.log('data: ');
+				// console.log(data);
 				return data;
 			});
 		}

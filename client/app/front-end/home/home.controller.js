@@ -10,7 +10,7 @@
 //   }
 // ]);
 
-angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', function ($scope, HomeService, $timeout, $http, socket) {
+angular.module('taggApp').controller('HomeCtrl', ['$scope', '$q', 'HomeService', function ($scope, $q, HomeService, $timeout, $http, socket) {
 
     
       $scope.textTags = function() {
@@ -21,16 +21,32 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', 'HomeService', funct
       };
 
       $scope.tagzz = [];
-       
-      $scope.loadTags = function(query) {
-           // return $http.get('/api/tags?query=' + query);
-           return $scope.tags;
-      };
 
+
+
+       
+$scope.loadTags = function(query) {
+     return HomeService.tagTypeAhead(query);
+    // return $http.get('/api/tags?query=' + query);
+     //return $scope.tags;
+};
+
+
+$scope.res;
 $scope.taggys = function() {
   // $scope.textTags();
-  console.log($scope.tag);
+  // console.log($scope.tag);
+  // console.log($scope.tags);
   // console.log($scope.tagsss);
+  $scope.res = $scope.tagSplitter($scope.tag);
+};
+
+$scope.taggyss = function() {
+  // $scope.textTags();
+  // console.log($scope.tag);
+  // console.log($scope.tags);
+   console.log($scope.res);
+  //$scope.tagSplitter($scope.tag);
 };
 
     
@@ -65,28 +81,49 @@ $scope.taggys = function() {
 
 
     $scope.saveTagg = function() {
-      var titleCap = $scope.capitalizeEachWord($scope.title);
-      var tagCap = $scope.capitalizeEachWord($scope.tag);
+      var titleCap = $scope.capitalizeEachTitleWord($scope.title);
+      var tagCap = $scope.capitalizeEachTag($scope.tag);
+      // { tag: [ 'Piggy', 'Jiggy' ] }
      
       //get tagg obj minus tag
       var tagg = {
         title: titleCap,
         url: $scope.url,        
-      };      
+      };    
 
-      //get and save tag property
-      HomeService.saveTag({tag: tagCap}).then(function(response) {
-        //set the saved tagId response to tagg.tag
-        tagg.tag = response.data._id;
-        //save tagg obj
+      // var tagResponses = []; 
+      $scope.tagSplitter(tagCap)
+      .then(function(tagResponses) {
+        tagg.tag = tagResponses;
+
         HomeService.saveTagg(tagg).then(function() {
-          $scope.getTaggs();
-        }, function(err) {
-        })
-        .then(function() {
-          $scope.getTags();
-        });        
-      }); 
+            $scope.getTaggs();
+          }, function(err) {
+          })
+          .then(function() {
+            $scope.getTags();
+          }); 
+      });
+
+    };
+
+    $scope.tagSplitter = function(tagCap) {
+      var promises = tagCap.map(function(tag) {
+        return HomeService.saveTag({tag: tag}).then(function(response) {
+            return response.data._id;
+        });
+      });
+
+      // var promises = function(tagCap) {
+      //   var ressy = [];
+      //   for (var i=0; i<tagCap.length; i++) {
+      //     return HomeService.saveTag({tag: tagCap[i]}).then(function(response) {
+      //       ressy.push(response.data._id);
+      //     });
+      //       return ressy;          
+      //   }
+      // };
+      return $q.all(promises);
     };
 
 
@@ -122,20 +159,41 @@ $scope.taggys = function() {
       //   return $http.get('/tags?query=' + query);
       // };
 
-      $scope.capitalizeEachWord = function(str) {
-        if (str.length == 1){
+      $scope.capitalizeEachTitleWord = function(str) {
+       
           var str = str;
           return str.replace(/\w\S*/g, function(txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        }
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          });
+      };
+
+      $scope.capitalizeEachTag = function(str) {
+          var cutTags = [];
+          var str = str;
+        console.log('init str : ');
+        console.log(str);
+        console.log('init str length: ');
+        console.log(str.length);       
         
         for(var i=0; i<str.length; i++) {
-            var str = str[i];
-            return str.replace(/\w\S*/g, function(txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        };
-    });
-}
+            var strSep = str[i];
+            console.log('for str: ');
+            console.log(strSep);
+            var strSepx = strSep.text; 
+            console.log('for str text: ');
+            console.log(strSepx); 
+
+            var newTag = strSepx.replace(/\w\S*/g, function(txt) {
+              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+
+            cutTags.push(newTag);
+            console.log(cutTags); 
+
+        }
+        return cutTags;
+      };
+
 
 
   $scope.refresh();
