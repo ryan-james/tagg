@@ -10,7 +10,8 @@
 //   }
 // ]);
 
-angular.module('taggApp').controller('HomeCtrl', ['$scope', '$q', 'HomeService', function ($scope, $q, HomeService, $timeout, $http, socket) {
+angular.module('taggApp').controller('HomeCtrl', ['$scope', '$q', 'HomeService', '$timeout', '$http',
+  function ($scope, $q, HomeService, $timeout, $http, socket) {
 
     
       $scope.textTags = function() {
@@ -20,34 +21,18 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', '$q', 'HomeService',
         return;
       };
 
-      $scope.tagzz = [];
-
-
 
        
 $scope.loadTags = function(query) {
-     return HomeService.tagTypeAhead(query);
-    // return $http.get('/api/tags?query=' + query);
+     //return HomeService.tagTypeAhead(query);
+     return $http.get('/api/tags?query=' + query).then(function(res) {
+       console.log('res');
+       console.log(res.data);
+       return res.data;
+     });
      //return $scope.tags;
 };
 
-
-$scope.res;
-$scope.taggys = function() {
-  // $scope.textTags();
-  // console.log($scope.tag);
-  // console.log($scope.tags);
-  // console.log($scope.tagsss);
-  $scope.res = $scope.tagSplitter($scope.tag);
-};
-
-$scope.taggyss = function() {
-  // $scope.textTags();
-  // console.log($scope.tag);
-  // console.log($scope.tags);
-   console.log($scope.res);
-  //$scope.tagSplitter($scope.tag);
-};
 
     
     $scope.refresh = function() {
@@ -60,8 +45,8 @@ $scope.taggyss = function() {
         $scope.taggs = response.data;
         // console.log('gettaggs: ');
         // console.log($scope.taggs);
-         console.log('called get taggs');
-         console.log($scope.taggs);
+         // console.log('called get taggs');
+         // console.log($scope.taggs);
     })};
     $scope.getTaggs();
 
@@ -108,22 +93,17 @@ $scope.taggyss = function() {
     };
 
     $scope.tagSplitter = function(tagCap) {
+      //get tag array
       var promises = tagCap.map(function(tag) {
+        //for each tag return the savetag promise
         return HomeService.saveTag({tag: tag}).then(function(response) {
+          //which returns the id promise after saving
             return response.data._id;
         });
+        //tagCap array is mapped to a new array of saveTag promises, and each of those promises
+        //returns a promise of an id
       });
-
-      // var promises = function(tagCap) {
-      //   var ressy = [];
-      //   for (var i=0; i<tagCap.length; i++) {
-      //     return HomeService.saveTag({tag: tagCap[i]}).then(function(response) {
-      //       ressy.push(response.data._id);
-      //     });
-      //       return ressy;          
-      //   }
-      // };
-      return $q.all(promises);
+        return $q.all(promises);      
     };
 
 

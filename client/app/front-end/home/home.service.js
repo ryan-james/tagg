@@ -36,7 +36,7 @@ angular.module('taggApp')
 			});
 		},
 		tagTypeAhead : function(query) {
-			return $http.get('/api/tags/', {tag:query}).success(function(data) {
+			return $http.get('/api/tags/?query=' + query).success(function(data) {
 				return data;
 			});
 		},

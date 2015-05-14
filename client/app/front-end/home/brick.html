@@ -5,6 +5,6 @@
 	 <p>        
 	    <a class="embedly-card" href="{{tagg.url}}"></a>
 	 </p>
-	 <h4>Tag(s): <span style="color:gray">{{tagg.tag[0].tag}}</span></h4>  
+	 <h4>Tag(s): <span style="color:gray" ng-repeat="tag in tagg.tag">{{tag.tag}} </span></h4>  
 	 <hr>
  </div>

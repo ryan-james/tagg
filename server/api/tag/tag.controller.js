@@ -5,10 +5,22 @@ var Tag = require('./tag.model');
 
 // Get list of tags
 exports.index = function(req, res) {
-  Tag.find(function (err, tags) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, tags);
-  });
+   var query = req.query.query;
+   var r = new RegExp(query, 'gi');
+   if(query){
+     Tag.find({tag:r}).exec(function (err, tags) {
+    //Tag.find({}, function (err, tags) {
+      if(err) { return handleError(res, err); }
+      return res.json(200, tags);
+    });
+   }
+  else {
+    //return res.json(200, tags);
+    Tag.find({}, function (err, tags) {
+      if(err) { return handleError(res, err); }
+      return res.json(200, tags);
+    });
+  }
 };
 
 // Get a single tag
