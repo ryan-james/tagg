@@ -10,8 +10,8 @@
 //   }
 // ]);
 
-angular.module('taggApp').controller('HomeCtrl', ['$scope', '$q', 'HomeService', '$timeout', '$http',
-  function ($scope, $q, HomeService, $timeout, $http, socket) {
+angular.module('taggApp').controller('HomeCtrl', ['$scope', '$q', 'HomeService', '$timeout', '$http', 'SweetAlert',
+  function ($scope, $q, HomeService, $timeout, $http, SweetAlert, socket) {
 
     
       $scope.textTags = function() {
@@ -21,6 +21,11 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', '$q', 'HomeService',
         return;
       };
 
+
+
+$scope.taggys = function() {
+  swal("Here's a message");
+};
 
        
 $scope.loadTags = function(query) {
@@ -82,8 +87,11 @@ $scope.loadTags = function(query) {
         tagg.tag = tagResponses;
 
         HomeService.saveTagg(tagg).then(function() {
+            SweetAlert.swal({   title: "Sweet!",   text: "You saved a tagg!",   type:"success" });
             $scope.getTaggs();
           }, function(err) {
+            SweetAlert.swal({   title: "Shiiit!",   text: "Tagg not saved.",   type:"error" });
+            console.log(err);          
           })
           .then(function() {
             $scope.getTags();
@@ -107,12 +115,46 @@ $scope.loadTags = function(query) {
     };
 
 
+    $scope.removeTaggWarning = function(item) {
+      SweetAlert.swal({
+         title: "Are you sure?",
+         text: "Your will tagg will be lost forever!",
+         type: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#DD6B55",
+         confirmButtonText: "Yes, delete it!",
+         closeOnConfirm: false
+      },
+      function(isConfirm){
+        if(isConfirm){
+          $scope.removeTagg(item);
+        }
+        else {
+          SweetAlert.swal({
+            title: "Lucky Tagg :)",
+            text: "Tagg survives another day!",
+            type: "error"
+          });
+        }
+      });
+    };
+
+
 
     $scope.removeTagg = function(item) {
       HomeService.deleteTagg(item).then(function() {
-        $scope.getTaggs();
+        SweetAlert.swal({
+          title:"Bye Tagg :(",
+          text: "Your tagg is lost in the ether",
+          type: "success"
+        }, 
+        function() {
+          $scope.getTaggs();
+        });
+        //$scope.getTaggs();
         console.log($scope.taggs);
       }, function(err) {
+        SweetAlert.swal("Couldn't remove tagg because of " + err);
       });
       console.log(item);
     };

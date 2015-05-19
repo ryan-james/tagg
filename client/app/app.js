@@ -8,7 +8,8 @@ angular.module('taggApp', [
   'ui.router',
   'ui.bootstrap',
   'wu.masonry',
-  'ngTagsInput'
+  'ngTagsInput',
+  'oitozero.ngSweetAlert'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
