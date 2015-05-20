@@ -34,24 +34,12 @@ exports.show = function(req, res) {
 
 // Creates a new tag in the DB.
 exports.create = function(req, res) {
-  //1: { tag: [ 'Piggy' ] }
-  //2: { tag: [ 'Piggy', 'Jiggy' ] }
 
-  //{ tag: [ 'Piggy' ] }
-  //{ tag: [ 'Jiggy' ] }
-
-  var tagId;
   console.log('tag req body: ');
   console.log(req.body);
-  //console.log(req.body.tag.length);
-
-  // for(var i=0; i<req.body.tag.length; i++){
-
-  // }
 
   Tag.create(req.body, function(err, tag) {
-    if(err) { 
-      //return handleError(res, err); 
+    if(err) {  
 
       Tag.find({'tag': req.body.tag}, function (err, tag) {
         tag = tag[0];

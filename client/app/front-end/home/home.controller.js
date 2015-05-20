@@ -13,19 +13,15 @@
 angular.module('taggApp').controller('HomeCtrl', ['$scope', '$q', 'HomeService', '$timeout', '$http', 'SweetAlert',
   function ($scope, $q, HomeService, $timeout, $http, SweetAlert, socket) {
 
-    
-      $scope.textTags = function() {
-        for(var i=1; i<$scope.tags.length; i++) {
-          $scope.tags[i].text = $scope.tags[i].tag;
-        }
-        return;
-      };
+ 
 
-
-
+ 
 $scope.taggys = function() {
   swal("Here's a message");
 };
+
+
+
 
        
 $scope.loadTags = function(query) {
@@ -62,7 +58,7 @@ $scope.loadTags = function(query) {
       HomeService.getTags().then(function(response) {
         //console.log(response.data);
         $scope.tags = $scope.initTags.concat(response.data);
-        $scope.textTags();
+        
         console.log('gettags: ');
         console.log($scope.tags);
 
@@ -85,6 +81,7 @@ $scope.loadTags = function(query) {
       $scope.tagSplitter(tagCap)
       .then(function(tagResponses) {
         tagg.tag = tagResponses;
+        $scope.textTags();
 
         HomeService.saveTagg(tagg).then(function() {
             SweetAlert.swal({   title: "Sweet!",   text: "You saved a tagg!",   type:"success" });
@@ -104,7 +101,7 @@ $scope.loadTags = function(query) {
       //get tag array
       var promises = tagCap.map(function(tag) {
         //for each tag return the savetag promise
-        return HomeService.saveTag({tag: tag}).then(function(response) {
+        return HomeService.saveTag({tag: tag, text: tag}).then(function(response) {
           //which returns the id promise after saving
             return response.data._id;
         });
@@ -113,6 +110,15 @@ $scope.loadTags = function(query) {
       });
         return $q.all(promises);      
     };
+
+
+    $scope.textTags = function() {
+        for(var i=0; i<$scope.tags.length; i++) {
+          $scope.tags[i].text = $scope.tags[i].tag;
+        }
+        return;
+    };
+
 
 
     $scope.removeTaggWarning = function(item) {
@@ -172,14 +178,6 @@ $scope.loadTags = function(query) {
         $scope.filterTag = undefined;
       }
     };
-
-
-
-      //AUTO COMPLETE TAGS (doesn't work)
-
-      // $scope.loadTags = function(query) {
-      //   return $http.get('/tags?query=' + query);
-      // };
 
       $scope.capitalizeEachTitleWord = function(str) {
        

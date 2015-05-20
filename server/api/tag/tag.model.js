@@ -9,6 +9,11 @@ var TagSchema = new Schema({
   	required: true,
   	trim: true,
   	index: {unique:true}
+  },
+  text: {
+  	type: String,
+  	required: true,
+  	trim: true
   }
 });
 
