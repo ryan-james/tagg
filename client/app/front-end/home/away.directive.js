@@ -3,7 +3,7 @@
 angular.module('taggApp')
 	.directive('taggAway', function() {
 		return {
-			restricted: 'E',
+			restrict: 'E',
 			templateUrl: 'app/front-end/home/away.html',
 			controller: 'HomeCtrl'
 		};

@@ -48,7 +48,8 @@ $scope.loadTags = function(query) {
         // console.log($scope.taggs);
          // console.log('called get taggs');
          // console.log($scope.taggs);
-    })};
+      });
+    };
     $scope.getTaggs();
 
 
@@ -161,12 +162,8 @@ $scope.loadTags = function(query) {
           title:"Bye Tagg :(",
           text: "Your tagg is lost in the ether",
           type: "success"
-        }, 
-        function() {
-          $scope.getTaggs();
         });
-        //$scope.getTaggs();
-        console.log($scope.taggs);
+        $scope.getTaggs();
       }, function(err) {
         SweetAlert.swal("Couldn't remove tagg because of " + err);
       });
@@ -187,8 +184,7 @@ $scope.loadTags = function(query) {
       }
     };
 
-      $scope.capitalizeEachTitleWord = function(str) {
-       
+      $scope.capitalizeEachTitleWord = function(str) {       
           var str = str;
           return str.replace(/\w\S*/g, function(txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
