@@ -15,7 +15,7 @@ angular.module('taggApp').controller('HomeCtrl', ['$scope', '$q', 'HomeService',
 
  
 
- 
+
 $scope.taggys = function() {
   swal("Here's a message");
 };
@@ -84,8 +84,16 @@ $scope.loadTags = function(query) {
         $scope.textTags();
 
         HomeService.saveTagg(tagg).then(function() {
-            SweetAlert.swal({   title: "Sweet!",   text: "You saved a tagg!",   type:"success" });
-            $scope.getTaggs();
+            SweetAlert.swal({   
+              title: "Sweet!",   
+              text: "You saved a tagg!",   
+              type:"success" 
+            },
+            function(isConfirm) {
+              $scope.title = '';
+              $scope.url = '';
+              $scope.tag = '';
+            });
           }, function(err) {
             SweetAlert.swal({   title: "Shiiit!",   text: "Tagg not saved.",   type:"error" });
             console.log(err);          
