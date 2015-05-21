@@ -7,8 +7,8 @@ angular.module('taggApp')
         url: '/',
         template: '<tagg-home></tagg-home>'
       })
-      .state('away', {
-        url: '/away',
-        template: '<tagg-away></tagg-away>'
+      .state('tagg-list', {
+        url: '/tagg-list',
+        template: '<tagg-list></tagg-list>'
       });
   });

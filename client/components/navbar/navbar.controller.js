@@ -7,8 +7,8 @@ angular.module('taggApp')
       'link': '/'
     },
     {
-      'title': 'Away',
-      'link': '/away'
+      'title': 'Taggs',
+      'link': '/tagg-list'
     },
     {
       'title': 'Socket',
