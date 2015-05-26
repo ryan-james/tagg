@@ -40,8 +40,8 @@ angular.module('taggApp')
 				return data;
 			});
 		},
-		saveTag : function(tagCap) {
-			 var promises = tagCap.map(function(tag) {
+		saveTag : function(tag) {
+			 //var promises = tagCap.map(function(tag) {
 			// if(tagOptions.indexOf(tag) === -1) {
 			// 	return tagOptions.push(tag);
 			// }
@@ -53,19 +53,19 @@ angular.module('taggApp')
 		}
 
 
-		$scope.tagSplitter = function(tagCap) {
-      //get tag array
-      //var promises = tagCap.map(function(tag) {
-        //for each tag return the savetag promise
-        return HomeService.saveTag({tag: tag}).then(function(response) {
-          //which returns the id promise after saving
-            return response.data._id;
-        });
-        //tagCap array is mapped to a new array of saveTag promises, and each of those promises
-        //returns a promise of an id
-      });
-        return $q.all(promises);      
-    };
+	// 	$scope.tagSplitter = function(tagCap) {
+ //      //get tag array
+ //      //var promises = tagCap.map(function(tag) {
+ //        //for each tag return the savetag promise
+ //        return HomeService.saveTag({tag: tag}).then(function(response) {
+ //          //which returns the id promise after saving
+ //            return response.data._id;
+ //        });
+ //        //tagCap array is mapped to a new array of saveTag promises, and each of those promises
+ //        //returns a promise of an id
+ //      });
+ //        return $q.all(promises);      
+ //    };
 	};
 
 

@@ -32,14 +32,34 @@
 	    </div>
 	</div> 
 
+
+  <div deckgrid source="taggs" class="deckgrid">
+    
+      <div style="max-width:560px; padding:0 10px;">
+         <h3><button class="btn btn-danger btn-xs" data-title="Delete" data-ng-click="mother.removeTaggWarning(card)" style="margin-right:10px; margin-bottom:5px"><span class="glyphicon glyphicon-trash"></span></button>{{card.title}}</h3>
+         <p><strong>Created: {{card.date}}</strong></p>
+         <a href="{{card.url}}">{{card.url}}</a>        
+         <p>        
+            <a class="embedly-card" href="{{card.url}}"></a>
+         </p>
+         <h4>Tag(s): <span style="color:gray" ng-repeat="tag in card.tag">*{{tag.tag}}* </span></h4>  
+         <h4>Tag(s)22: <span style="color:gray">*{{card.tag}}* </span></h4>  
+         <hr>
+      </div>
+
+  </div>
+
+
+
+
     
 
 
-    <div masonry>
+  <!--   <div masonry>
       <div class="masonry-brick" ng-repeat="tagg in taggs | filter : filterTag : true">
       	<tagg-brick>
       </div>
-    </div>
+    </div> -->
 
 	<script type="text/javascript" async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8">  
 	  $('p a').embedly({

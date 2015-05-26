@@ -13,7 +13,7 @@
 angular.module('taggApp').controller('HomeCtrl', ['$scope', '$q', 'HomeService', '$timeout', '$http', 'SweetAlert',
   function ($scope, $q, HomeService, $timeout, $http, SweetAlert, socket) {
 
- 
+
 
 
 $scope.taggys = function() {
@@ -58,6 +58,7 @@ $scope.taggys = function() {
       };    
 
       $scope.tagSplitter(tagCap).then(function(tagResponses) {
+      // HomeService.saveTag(tagCap).then(function(tagResponses) {
         tagg.tag = tagResponses;
 
         HomeService.saveTagg(tagg).then(function() {

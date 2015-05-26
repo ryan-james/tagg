@@ -4,11 +4,18 @@ angular.module('taggApp').controller('TaggListCtrl', ['$scope', '$q', 'HomeServi
   function ($scope, $q, HomeService, TaggListService, $timeout, $http, SweetAlert, socket) {
 
 
-  	$scope.getTaggs = function() {
+ $scope.photos = [
+    {id: 'p1', 'title': 'A nice day!', src: "http://lorempixel.com/300/400/"},
+    {id: 'p2', 'title': 'Puh!', src: "http://lorempixel.com/300/400/sports"},
+    {id: 'p3', 'title': 'What a club!', src: "http://lorempixel.com/300/400/nightlife"}
+];
+
+
+    $scope.getTaggs = function() {
       TaggListService.getTaggs().then(function(response) {
         $scope.taggs = response.data;
-        // console.log('gettaggs: ');
-        // console.log($scope.taggs);
+        console.log('gettaggs: ');
+        console.log($scope.taggs);
          // console.log('called get taggs');
          // console.log($scope.taggs);
       });
@@ -44,7 +51,7 @@ angular.module('taggApp').controller('TaggListCtrl', ['$scope', '$q', 'HomeServi
       TaggListService.deleteTagg(item).then(function() {
         SweetAlert.swal({
           title:"Bye Tagg :(",
-          text: "Your tagg is banished to the underworld",
+          text: "Hades ate your tagg for breakfast.",
           type: "success"
         });
         $scope.getTaggs();
@@ -76,9 +83,11 @@ angular.module('taggApp').controller('TaggListCtrl', ['$scope', '$q', 'HomeServi
 
 
     $scope.removeTaggWarning = function(item) {
+            console.log(item);
+
       SweetAlert.swal({
          title: "Are you sure?",
-         text: "Your will tagg will be lost forever!",
+         text: "Your tagg will be banished to the underworld!",
          type: "warning",
          showCancelButton: true,
          confirmButtonColor: "#DD6B55",
