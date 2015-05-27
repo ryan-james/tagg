@@ -27,8 +27,8 @@
     <div class="container">
 	    <div class="row" style="text-align:center">
 	    	<h2>Tagg List:</h2>
-	    	<button class="button button-glow button-rounded button-highlight" type="button" id="tagFilter" ng-click="refresh()">Reload Bricks</button> 
-	    	<button class="button button-glow button-rounded button-highlight" type="button" id="tagFilter" ng-click="getTaggs()">get</button> 
+	    	<!-- <button class="button button-glow button-rounded button-highlight" type="button" id="tagFilter" ng-click="refresh()">Reload Bricks</button> 
+	    	<button class="button button-glow button-rounded button-highlight" type="button" id="tagFilter" ng-click="getTaggs()">get</button>  -->
 	    </div>
 	</div> 
 
@@ -42,8 +42,9 @@
          <p>        
             <a class="embedly-card" href="{{card.url}}"></a>
          </p>
-         <h4>Tag(s): <span style="color:gray" ng-repeat="tag in card.tag">*{{tag.tag}}* </span></h4>  
-         <h4>Tag(s)22: <span style="color:gray">*{{card.tag}}* </span></h4>  
+         <!-- <h4>Tag(s): <span style="color:gray" ng-repeat="tag in card.tag">*{{tag.tag}}* </span></h4>  
+         <h4>Tag(s)22: <span style="color:gray">*{{card.tag}}* </span></h4>  --> 
+         <h4>Tag(s): <span style="color:gray"><tagg-tags tags="{{card.tag}}"></span></h4>
          <hr>
       </div>
 
