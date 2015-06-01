@@ -10,7 +10,7 @@ angular.module('taggApp', [
   'wu.masonry',
   'ngTagsInput',
   'oitozero.ngSweetAlert',
-  'akoenig.deckgrid'
+  // 'akoenig.deckgrid'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

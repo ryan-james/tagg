@@ -27,13 +27,13 @@
     <div class="container">
 	    <div class="row" style="text-align:center">
 	    	<h2>Tagg List:</h2>
-	    	<!-- <button class="button button-glow button-rounded button-highlight" type="button" id="tagFilter" ng-click="refresh()">Reload Bricks</button> 
-	    	<button class="button button-glow button-rounded button-highlight" type="button" id="tagFilter" ng-click="getTaggs()">get</button>  -->
+	    	<button class="button button-glow button-rounded button-highlight" type="button" id="tagFilter" ng-click="refresh()">Reload Bricks</button> 
+	    	<button class="button button-glow button-rounded button-highlight" type="button" id="tagFilter" ng-click="getTaggs()">get</button> 
 	    </div>
 	</div> 
 
 
-  <div deckgrid source="taggs" class="deckgrid">
+<!--   <div deckgrid source="taggs" class="deckgrid">
     
       <div style="max-width:560px; padding:0 10px;">
          <h3><button class="btn btn-danger btn-xs" data-title="Delete" data-ng-click="mother.removeTaggWarning(card)" style="margin-right:10px; margin-bottom:5px"><span class="glyphicon glyphicon-trash"></span></button>{{card.title}}</h3>
@@ -42,21 +42,25 @@
          <p>        
             <a class="embedly-card" href="{{card.url}}"></a>
          </p>
-         <!-- <h4>Tag(s): <span style="color:gray" ng-repeat="tag in card.tag">*{{tag.tag}}* </span></h4>  
-         <h4>Tag(s)22: <span style="color:gray">*{{card.tag}}* </span></h4>  --> 
          <h4>Tag(s): <span style="color:gray"><tagg-tags tags="{{card.tag}}"></span></h4>
          <hr>
       </div>
 
   </div>
+ -->
 
+ <button ng-click="extract('http://www.flickr.com/photos/kenlee2010/7486695688/')">Click me</button>
 
-
+<div class="demo demo-background">
+  <div class="results">
+    
+  </div>
+</div>
 
     
 
 
-  <!--   <div masonry>
+    <!-- <div masonry>
       <div class="masonry-brick" ng-repeat="tagg in taggs | filter : filterTag : true">
       	<tagg-brick>
       </div>
@@ -65,7 +69,83 @@
 	<script type="text/javascript" async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8">  
 	  $('p a').embedly({
 	   //  key: '7a682728fe9646b483c6aee1c9edc992',
-	    query: {maxwidth:530} });
+	    query: {maxwidth:530} 
+    });
+
+
+
+// var displayImage = function(img, color, provider){
+ 
+//   var width = 400,
+//     height = Math.ceil(img.height * (width / img.width));
+ 
+//   // Add the block to the results section.
+//   $('.demo .results').html(
+//     '<div class="background-wrapper"><div id="backgroundBlock"><span>' +
+//     provider+'</span></div></div>');
+ 
+//   // Create a wrapper.
+//   $('.background-wrapper').css({
+//     width: width + 20,
+//     height: height+ 20
+//   });
+//   // Build the actually placeholder.
+//   $('#backgroundBlock').css({
+//       background: color,
+//       width: width,
+//       height: height
+//   });
+//   // Center the text.
+//   $('#backgroundBlock span').css('padding-top', Math.floor(height/2)-10);
+ 
+//   // Animate the fade in.
+//   $('.background-wrapper').animate({opacity: 1}, 500);
+ 
+//   // Use Embedly display to resize the image, we add a timestamp in the demo o
+//   var src = $.embedly.display.resize(img.url,
+//       {query: {width:width, height:height}, key: $.embedly.defaults.key}) +
+//       '&_' +Math.floor(Math.random() * 1000);
+ 
+//   // Create the img element
+//   var elem = document.createElement('img');
+ 
+//   // Set up the onload handler.
+//   var loaded = false;
+//   var handler = function() {
+//     if (loaded) {
+//       return;
+//     }
+//     loaded = true;
+//     // Fade the image into view.
+//     $('#backgroundBlock img').animate({opacity: 1}, 1000);
+//   };
+ 
+//   // Add the attributes to the image.
+//   elem.onload = handler;
+//   elem.src = src;
+//   elem.style.display = 'block';
+//   // Place the image in the correct ID.
+//   document.getElementById('backgroundBlock').appendChild(elem);
+ 
+//   // If the image is already in the browsers cache call the handler.
+//   if (elem.complete) {
+//     handler();
+//   }
+// };
+ 
+// $('.demo-background .collapse .button').on('click', function(){
+//   // Grab the input.
+//   var url = $('.demo-background input').val();
+//   // Make the call to Embedly Extract
+//   $.embedly.extract(url)
+//     .progress(function(obj){
+//       // Grab images and create the colors.
+//       var img = obj.images[0],
+//         color = new Color(img.colors[0].color[0], img.colors[0].color[1], img.colors[0].color[2]);
+//       // Display the image inline.
+//       displayImage(img, color.hex, obj.provider_display);
+//     });
+// });
 	</script>
 
 
